@@ -1,0 +1,45 @@
+<div class="card" *ngIf="result">
+
+  <h2>Resume Match Score</h2>
+
+  <div class="score">{{ result.matchScore.score }}%</div>
+
+  <span class="badge" [ngClass]="statusClass">
+    {{ result.status }}
+  </span>
+
+  <!-- Missing Skills -->
+  <div class="section">
+    <h3>Missing Skills</h3>
+    <div class="chips" *ngIf="result.matchScore.missing.length; else noMissing">
+      <span class="chip danger" *ngFor="let skill of result.matchScore.missing">
+        {{ skill }}
+      </span>
+    </div>
+    <ng-template #noMissing>
+      <p class="muted">No missing skills</p>
+    </ng-template>
+  </div>
+
+  <!-- Matched Skills -->
+  <div class="section">
+    <h3>Matched Skills</h3>
+    <div class="chips" *ngIf="result.matchScore.matched.length; else noMatched">
+      <span class="chip success" *ngFor="let skill of result.matchScore.matched">
+        {{ skill }}
+      </span>
+    </div>
+    <ng-template #noMatched>
+      <p class="muted">No matched skills found</p>
+    </ng-template>
+  </div>
+
+  <!-- Suggestions -->
+  <div class="section" *ngIf="result.suggestions.length">
+    <h3>Suggestions</h3>
+    <ul>
+      <li *ngFor="let s of result.suggestions">{{ s }}</li>
+    </ul>
+  </div>
+
+</div>

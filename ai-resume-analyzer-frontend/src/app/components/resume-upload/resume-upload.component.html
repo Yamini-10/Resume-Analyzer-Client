@@ -1,0 +1,9 @@
+<div class="card">
+  <label>Upload Resume</label>
+  <input type="file" accept=".pdf,.docx" (change)="upload($event)" />
+
+<p *ngIf="uploaded" style="color: #16a34a; margin-top: 8px;">
+  ✔ Resume uploaded
+</p>
+
+</div>

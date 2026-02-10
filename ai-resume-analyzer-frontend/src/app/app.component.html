@@ -1,0 +1,31 @@
+<div class="container">
+  <h1 class="title">AI Resume Analyzer</h1>
+
+  <div class="card">
+    <div class="section-title">Upload Resume</div>
+    <app-resume-upload
+      (resumeParsed)="onResumeParsed($event)"
+    ></app-resume-upload>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Job Description</div>
+    <app-job-description
+      (jobDescriptionChange)="onJobDescriptionChanged($event)"
+    ></app-job-description>
+  </div>
+
+  <button class="analyze-btn" (click)="analyze()">
+    Analyze Resume
+  </button>
+
+  <mat-progress-spinner
+    *ngIf="loading"
+    mode="indeterminate"
+  ></mat-progress-spinner>
+
+  <app-result
+    *ngIf="analysisResult"
+    [result]="analysisResult"
+  ></app-result>
+</div>
